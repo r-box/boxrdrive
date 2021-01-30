@@ -9,6 +9,7 @@
 status](https://www.r-pkg.org/badges/version/boxrdrive)](https://CRAN.R-project.org/package=boxrdrive)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R-CMD-check](https://github.com/r-box/boxrdrive/workflows/R-CMD-check/badge.svg)](https://github.com/r-box/boxrdrive/actions)
 
 <!-- badges: end -->
 
