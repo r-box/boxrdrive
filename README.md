@@ -58,6 +58,15 @@ system. Its main function, `box_drive()` , uses the
 [fs](https://fs.r-lib.org/) package to compose an absolute path, similar
 in philosophy to `here::here()`.
 
+There is also a diagnostic function:
+
+``` r
+dr_box_drive()
+```
+
+    ✓ Box Drive installation found.
+    ✓ Box Drive directory available at '/Users/AFauci/Box'.
+
 ## Caveats for shared items
 
 One of the goals of this package is to support workflows that are
@@ -98,3 +107,10 @@ This package is not on CRAN; you can install it from
 # install.packages("devtools")
 devtools::install_github("r-box/boxrdrive")
 ```
+
+## Code of Conduct
+
+Please note that the boxrdrive project is released with a [Contributor
+Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
