@@ -13,7 +13,8 @@ dr_box_drive(reload = TRUE)
 Invisible \code{NULL}, called for side effects.
 }
 \description{
-Diagnose Box Drive
+Provides diagnostics on access to local computer's installation of Box Drive.
+To reload Box Drive's settings from your computer, use \code{reload = TRUE}.
 }
 \examples{
   dr_box_drive()

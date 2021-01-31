@@ -17,4 +17,9 @@ RoxygenNote: 7.1.1
 SystemRequirements: 'Box Drive', available only on Windows and MacOS.
 URL: https://github.com/r-box/boxrdrive
 BugReports: https://github.com/r-box/boxrdrive/issues
-
+Imports: 
+    fs
+Suggests: 
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
