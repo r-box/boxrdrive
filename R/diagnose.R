@@ -3,23 +3,21 @@
 #' Provides diagnostics on access to local computer's installation of Box Drive.
 #' To reload Box Drive's settings from your computer, use `reload = TRUE`.
 #'
-#' @param reload `logical` indicates to reload Box Drive settings.
-#'
 #' @return Invisible `NULL`, called for side effects.
 #' @examples
 #'   dr_box_drive()
 #' @export
 #'
-dr_box_drive <- function(reload = TRUE) {
+dr_box_drive <- function() {
 
-  # if Mac or Windows
-  if (!get_os() %in% c("Darwin", "Windows")) {
+  os <- get_os()
 
+  if (!os %in% c("Darwin", "Windows")) {
+    ui_oops("Box Drive not available on OS {os}, only MacOS and Windows.")
+    return(invisible(NULL))
   }
 
-  if (reload) {
-    set_option_root()
-  }
+  set_option_root()
 
   # this function is not tested because everything above this comment
   # depends on the operating system and whether Box Drive is installed.
@@ -44,13 +42,12 @@ dr_box_drive_installed <- function() {
   installed <- box_drive_installed()
 
   if (!installed) {
-    # oops not installed
-
+    ui_oops("Cannot find Box Drive installation.")
+  } else {
+    ui_done("Box Drive installation found.")
   }
 
-  # confirm installed
-
-  installed
+  invisible(installed)
 }
 
 # snapshot-test this
@@ -59,13 +56,15 @@ dr_box_drive_mounted <- function() {
   mounted <- box_drive_mounted()
 
   if (!mounted) {
-    # oops not mounted
-
+    ui_oops(
+      "Box Drive directory not available; check that Box Drive is running."
+    )
+  } else {
+    value <- ui_value(getOption("boxrdrive.root"))
+    ui_done("Box Drive directory available at {value}.")
   }
 
-  # confirm mounted
-
-  mounted
+  invisible(mounted)
 }
 
 # test this

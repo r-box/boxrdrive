@@ -4,10 +4,7 @@
 \alias{dr_box_drive}
 \title{Diagnose Box Drive}
 \usage{
-dr_box_drive(reload = TRUE)
-}
-\arguments{
-\item{reload}{\code{logical} indicates to reload Box Drive settings.}
+dr_box_drive()
 }
 \value{
 Invisible \code{NULL}, called for side effects.

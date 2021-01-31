@@ -18,8 +18,6 @@ set_option_root <- function() {
 
   old_root <- getOption("boxrdrive.root")
 
-  root <- NULL
-
   if (identical(os, "Darwin")) {
     root <- root_macOS()
   }
