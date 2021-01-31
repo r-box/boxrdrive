@@ -3,6 +3,10 @@
 #' We are storing this value in an option because it we can mock the option
 #' in testing, making the testing independent of the Box Drive installation.
 #'
+#' To avoid errors on loading, this function is designed not to throw errors;
+#' rather, it sets `option("boxrdrive.root")` to `NULL`, so that it can be dealt
+#' with later.
+#'
 #' @seealso [Box Drive reference](https://support.box.com/hc/en-us/articles/360043697454-Configuring-the-Default-Box-Drive-Folder-Location)
 #'
 #' @return `character` previous value of option, invisibly.
@@ -10,10 +14,9 @@
 #'
 set_option_root <- function() {
 
-  os <- unname(Sys.info()["sysname"])
+  os <- get_os()
 
   old_root <- getOption("boxrdrive.root")
-  root <- old_root
 
   if (identical(os, "Darwin")) {
     root <- root_macOS()
@@ -28,12 +31,9 @@ set_option_root <- function() {
   return(invisible(old_root))
 }
 
-stop_no_installation <- function() {
-  stop("Cannot find Box Drive installation.", call. = FALSE)
-}
-
 root_macOS <- function() {
 
+  root <- NULL
   root <-
     tryCatch(
       system2(
@@ -42,21 +42,20 @@ root_macOS <- function() {
         stdout = TRUE,
         stderr = TRUE
       ),
-      warning = function(w) stop_no_installation(),
-      error = function(e) stop_no_installation()
+      warning = return_null,
+      error = return_null
     )
 
   root
 }
-
 
 root_windows <- function() {
 
   root <-
     tryCatch(
       utils::readRegistry("SOFTWARE\\Box\\Box", "HLM"),
-      warning = function(w) stop_no_installation(),
-      error = function(e) stop_no_installation()
+      warning = return_null,
+      error = return_null
     )
 
   root
