@@ -30,9 +30,9 @@ Box Drive, files and folders are identified using paths,
 e.g. `major_project/key_file.csv`. This path’s location on your computer
 depends on its OS:
 
--   Windows: `C:\Users\AFauci\major_project\key_file.csv`
+-   Windows: `C:\Users\AFauci\Box\major_project\key_file.csv`
 
--   MacOS: `/Users/AFauci/major_project/key_file.csv`
+-   MacOS: `/Users/AFauci/Box/major_project/key_file.csv`
 
 These are the standard locations to mount Box Drive; you may have a
 [custom
@@ -51,10 +51,10 @@ On MacOS, this returns something like:
 
 On Windows:
 
-    [1] "C:\Users\AFauci\Box\major_project\key_file.csv"
+    [1] "C:/Users/AFauci/Box/major_project/key_file.csv"
 
 This package figures out if and where Box Drive is mounted to your file
-system. Its main function, `box_drive()` , uses the
+system. Its main function, `box_drive()`, uses the
 [fs](https://fs.r-lib.org/) package to compose an absolute path, similar
 in philosophy to `here::here()`.
 
@@ -80,7 +80,7 @@ KHarris, it will appear in the *root* folder of KHarris’ Box account as
 
 Furthermore, if there already exists `key_file.csv` in KHarris’ Box root
 folder, it will appear in KHarris’ account as something like
-`key_file.csv [Antony Fauci]`.
+`key_file.csv [AFauci]`.
 
 To minimize path-portability problems, there are two things you can do:
 
@@ -90,13 +90,13 @@ To minimize path-portability problems, there are two things you can do:
     There’s no easy way to guarantee this, but do your best.
 
 In this case, a workaround might be for AFauci to share the
-`major_project` folder, as it appears in the root folder. It would be
-helpful to make sure that `major_project` has a sufficiently-distinct
-name.
+`major_project` folder, as it would appear in both accounts’ root
+folder. It would be helpful to give `major_project` a
+sufficiently-distinct name.
 
 Box itself uses unique identifiers for folders and files; these do not
-appear to be accessible from Box Drive. If these identifiers were
-accessible, this problem could be avoided completely.
+appear to be accessible from Box Drive. If Box Drive made these
+identifiers accessible, this problem could be avoided completely.
 
 ## Installation
 
@@ -104,8 +104,8 @@ This package is not on CRAN; you can install it from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("r-box/boxrdrive")
+# install.packages("remotes")
+remotes::install_github("r-box/boxrdrive")
 ```
 
 ## Code of Conduct

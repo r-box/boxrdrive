@@ -3,7 +3,7 @@
 #' @param ... `character` elements of path, with respect to root of Box Drive.
 #'
 #' @return `character` absolute path on Box Drive.
-#' @example
+#' @examples
 #' \dontrun{
 #'   # not run because it depends on side effects
 #'   box_drive("major_project", "key_file.csv")
