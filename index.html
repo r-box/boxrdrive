@@ -80,8 +80,8 @@
 <p>Box Drive provides you access to your Box files as a native part of your computer’s filesystem; it relies on the same authentication method your institution provides when you log into the Box web portal. The idea of boxrdrive is to make it easier to compose device-independent file paths to your local computer’s Box Drive.</p>
 <p>Let’s say that you wish to access a file in your Box filespace. Using Box Drive, files and folders are identified using paths, e.g. <code>major_project/key_file.csv</code>. This path’s location on your computer depends on its OS:</p>
 <ul>
-<li><p>Windows: <code>C:\Users\AFauci\major_project\key_file.csv</code></p></li>
-<li><p>MacOS: <code>/Users/AFauci/major_project/key_file.csv</code></p></li>
+<li><p>Windows: <code>C:\Users\AFauci\Box\major_project\key_file.csv</code></p></li>
+<li><p>MacOS: <code>/Users/AFauci/Box/major_project/key_file.csv</code></p></li>
 </ul>
 <p>These are the standard locations to mount Box Drive; you may have a <a href="https://support.box.com/hc/en-us/articles/360043697454-Configuring-the-Default-Box-Drive-Folder-Location">custom location</a>.</p>
 <p>You can access Box Drive paths using:</p>
@@ -91,8 +91,8 @@
 <p>On MacOS, this returns something like:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>[<span class="dv">1</span>] <span class="st">"/Users/AFauci/Box/major_project/key_file.csv"</span></span></code></pre></div>
 <p>On Windows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>[<span class="dv">1</span>] <span class="st">"C:\Users\AFauci\Box\major_project\key_file.csv"</span></span></code></pre></div>
-<p>This package figures out if and where Box Drive is mounted to your file system. Its main function, <code><a href="reference/box_drive.html">box_drive()</a></code> , uses the <a href="https://fs.r-lib.org/">fs</a> package to compose an absolute path, similar in philosophy to <code>here::here()</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>[<span class="dv">1</span>] <span class="st">"C:/Users/AFauci/Box/major_project/key_file.csv"</span></span></code></pre></div>
+<p>This package figures out if and where Box Drive is mounted to your file system. Its main function, <code><a href="reference/box_drive.html">box_drive()</a></code>, uses the <a href="https://fs.r-lib.org/">fs</a> package to compose an absolute path, similar in philosophy to <code>here::here()</code>.</p>
 <p>There is also a diagnostic function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/dr_box_drive.html">dr_box_drive</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -103,22 +103,22 @@
 <a href="#caveats-for-shared-items" class="anchor"></a>Caveats for shared items</h2>
 <p>One of the goals of this package is to support workflows that are reproducible across different Box accounts. This is complicated because, on Box, shared folders are not guaranteed to have the same paths among different accounts.</p>
 <p>For example, if AFauci shares the file <code>major_project/key_file.csv</code> with KHarris, it will appear in the <em>root</em> folder of KHarris’ Box account as <code>key_file.csv</code>; the path is no longer portable.</p>
-<p>Furthermore, if there already exists <code>key_file.csv</code> in KHarris’ Box root folder, it will appear in KHarris’ account as something like <code>key_file.csv [Antony Fauci]</code>.</p>
+<p>Furthermore, if there already exists <code>key_file.csv</code> in KHarris’ Box root folder, it will appear in KHarris’ account as something like <code>key_file.csv [AFauci]</code>.</p>
 <p>To minimize path-portability problems, there are two things you can do:</p>
 <ul>
 <li><p>Share only files or folders in your Box root directory.</p></li>
 <li><p>Try to give the file or folder you are sharing a unique name. There’s no easy way to guarantee this, but do your best.</p></li>
 </ul>
-<p>In this case, a workaround might be for AFauci to share the <code>major_project</code> folder, as it appears in the root folder. It would be helpful to make sure that <code>major_project</code> has a sufficiently-distinct name.</p>
-<p>Box itself uses unique identifiers for folders and files; these do not appear to be accessible from Box Drive. If these identifiers were accessible, this problem could be avoided completely.</p>
+<p>In this case, a workaround might be for AFauci to share the <code>major_project</code> folder, as it would appear in both accounts’ root folder. It would be helpful to give <code>major_project</code> a sufficiently-distinct name.</p>
+<p>Box itself uses unique identifiers for folders and files; these do not appear to be accessible from Box Drive. If Box Drive made these identifiers accessible, this problem could be avoided completely.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>This package is not on CRAN; you can install it from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"r-box/boxrdrive"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"r-box/boxrdrive"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">
