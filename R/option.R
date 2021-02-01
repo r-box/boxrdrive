@@ -51,12 +51,23 @@ root_macOS <- function() {
 
 root_windows <- function() {
 
-  root <-
+  registry <-
     tryCatch(
       utils::readRegistry("SOFTWARE\\Box\\Box", "HLM"),
       warning = return_null,
       error = return_null
     )
 
-  root
+  # Box Drive not installed
+  if (is.null(registry)) {
+    return(NULL)
+  }
+
+  # custom location
+  custom <- registry[["CustomBoxLocation"]]
+  if (!is.null(custom)) {
+    return(custom)
+  }
+
+  fs::path(fs::path_expand("~"), "Box")
 }

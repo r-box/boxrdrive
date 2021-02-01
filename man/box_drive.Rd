@@ -15,3 +15,9 @@ box_drive(...)
 \description{
 Get path on Box Drive
 }
+\examples{
+\dontrun{
+  # not run because it depends on side effects
+  box_drive("major_project", "key_file.csv")
+}
+}
